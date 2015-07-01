@@ -1,4 +1,1 @@
-# DSSG_sidewalk
-Hi ...This is Vaish
-# Hi This is Amir
-# New Yun.
+# This is going to be used for my own  DSSG_SIDEWALKS stuff 
