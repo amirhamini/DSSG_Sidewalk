@@ -1,5 +1,5 @@
 import urllib2
-import json, ast
+import json
 import os
 
 # response = urllib2.urlopen(os.sys.argv[1])
