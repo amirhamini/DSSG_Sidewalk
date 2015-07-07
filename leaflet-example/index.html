@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<!-- CSS file dealing with the style of the page -->
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+<script src = "https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+<style>
+/*size of map appearing on your page*/
+#map { height: 500px; }
+</style>
+
+</head>
+
+<body>
+Hello world!
+
+<!-- div is just for makes our file organized-->
+<div id="map"></div> 
+<script>
+// L.map("id")
+// Make the map and point it at div with id 'map'
+ 	var  map = L.map("map").setView([47.653684, -122.311275], 12);
+
+ 	// Add a map form osm
+ 	var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+ 	var osmAttrib = 'Map data @ <a href = "http://openstreetmap.org">OpenStreetMap</a>; contributors'
+ 	var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 16, attribution: osmAttrib});
+ 	osm.addTo(map);
+
+ // Add geojson data
+ // TODO: make this asynchronous
+ 	var geojsonDataResponse =  $.ajax({
+ 	type: "GET",
+ 	url: "http://hackcessibleapi.cs.washington.edu/sidewalks.json",
+ 	dataType: "json",
+ 	success: function(){ },
+ 	data: {},
+ 	async: false
+
+ });
+ 	// Getting the data and not the web info stuff
+	var geojsonData = geojsonDataResponse.responseJSON
+	// Data is a list of geojson linestrings that looks like this:
+	// {"type": "LineString",
+	// "properties": {
+	// "grade": elevation slope,
+	// "sidewalk_objectid": SDOT data set integer},
+	// "coordinates": [[lon1, lat1], [lon2, lat2]]
+    // }
+    for (var i = 0; i<geojsonData.length; i++){
+
+    	var pointData = geojsonData[i];
+    	var coordinates = pointData["coordinates"]
+    	// Draw only lineStrings
+    	var latlongsList = []
+    	for (var  j = 0; j < coordinates.length; j++){
+    		latlongsList.push([coordinates[j][1],coordinates[j][0]]);
+    	}
+
+    	var polyline = L.polyline(latlongsList,{color: "red"}).addTo(map);
+
+    }
+	
+    
+
+</script>
+</body>
+
+</html>
+
