@@ -1,6 +1,7 @@
 import urllib2
 import json
 import os
+import requests
 
 # response = urllib2.urlopen(os.sys.argv[1])
 response = urllib2.urlopen("https://data.seattle.gov/resource/x3ji-ckps.json")
@@ -39,7 +40,6 @@ output += \
 }
     '''
 # Check to see if geojson is valid
-import requests
 validate_endpoint = 'http://geojsonlint.com/validate'
 
 if requests.post(validate_endpoint, data=output).json()['status'] == "ok":
