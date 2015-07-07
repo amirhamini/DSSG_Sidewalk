@@ -1,1 +1,11 @@
-# This is going to be used for my own  DSSG_SIDEWALKS stuff 
+ DSSG Sidawals
+ =============
+ 
+My own stuff
+ -----------
+  
+  
+ This repository will be used for the DSSG_SIDEWALK project.
+ 
+ 
+ 
